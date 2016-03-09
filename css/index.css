@@ -125,7 +125,7 @@
 	color: #323232;
 }
 .page-content .list .list-wrap{
-	margin: .1rem .2rem 0;
+	margin: .16rem .2rem 0;
 	overflow: hidden;
 }
 .page-content .list .list-wrap .list-category{
@@ -133,8 +133,8 @@
 }
 .page-content .list .list-wrap .list-category li{
 	float: left;
-	width: 24%;
-	height: 1.2rem;
+	width: 22%;
+	height: .8rem;
 	overflow: hidden;
 	text-align: center;
 	display: box;
@@ -142,7 +142,7 @@
 	-webkit-box-align: center;
 	box-align: center;
 	position: relative;
-	margin-left: .06rem;
+	margin-left: .18rem;
 }
 .page-content .list .list-wrap .list-category li img{
 	width: 100%;
