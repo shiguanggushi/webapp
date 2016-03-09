@@ -72,7 +72,15 @@
 			});
 		 });
 		</script>
-	</head>
+      <script>
+    	$(function(){
+		    $('.navbox ul li').click(function(){
+		        $(this).addClass('active');
+		        $('.navbox ul li').not(this).removeClass('active');
+		    });
+		});
+    </script>
+      </head>
 	<body>
 		<div id="wrapper">
 			<div class="page-content">
@@ -119,16 +127,19 @@
                 		<li class="active">反馈率</li>
                 		<li>最新</li>
                 		<li>热门</li>
-                		<li>筛选<i class="shaixuan Hui-iconfont Hui-iconfont-fenlei"></i></li>
+                		<li id="sxbot">筛选<i class="shaixuan Hui-iconfont Hui-iconfont-fenlei"></i></li>
                 	</ul>
+
                 </div>
-                <script>
-                	$(function(){
-					    $('.navbox ul li').click(function(){
-					        $(this).addClass('active');
-					        $('.navbox ul li').not(this).removeClass('active');
-					    });
-					});
+                <script type="text/javascript">
+                    $("#sxbot").click(function(){
+                    	layer.open({
+						    type: 1,
+						    content: '可传入任何内容，支持html。一般用于手机页面中',
+						    anim: 1,
+						    style: 'position:fixed; top:1.7rem; left:0; width:100%; height:150px; padding:10px 0; border:none;'
+						});
+                    })
                 </script>
                 <!--
                 	作者：shiguanggushi@126.com
