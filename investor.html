@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="format-detection" content="telephone=no">
+	    <meta name="imagemode" content="force">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>智库中国</title>
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="iconfont_v1.0.7/iconfont.css" />
+		<!--<script type="text/javascript" src="js/jquery-2.1.3.min.js" ></script>-->
+		<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+		<script type="text/javascript" src="layer.m/layer.m.js" ></script>
+		<script type="text/javascript" src="js/register.js" ></script>
+		<script type="text/javascript">
+		 var pageIndex = 1;
+		 var pageType;
+         $(document).ready(function() {
+			$(function(){
+              $.ajax({
+			  type:"POST",
+			  data:"pageIndex="+(pageIndex),
+			  url:"manifest.json",
+			  dataType:"html",
+			  success: function(data){
+				 console.log(data);
+				 $(".list").append(data);
+			  }
+				});
+			});
+			var i;
+			function pullDownAction() {
+				$.ajax({
+					type: "POST",
+					url: "manifest.json",
+					data: "pageIndex=" + (++pageIndex),
+					dataType: "html",
+					success: function(msg) {
+						if (msg.length==0) {
+							alert('数据已经全部加载！');
+						} else {
+							$(".list").append(msg);
+						}
+						$(".loadingbox").hide();
+						i = 0;
+					},
+					error: function() {
+//						alert("提取失败！");
+                        layer.open({
+						    content: '提取失败！',
+						    style: 'background-color:#fFF; color:#cd020c; border:none;text-align: center;',
+						    time: 2
+						});
+                         return;
+                       
+					}
+				});
+			}
+			$(document).ready(function() {
+				$(window).on("scroll", function() {
+					if (i == 1) {
+						return;
+					}
+					if (($(window).height() + $(window).scrollTop()) >= $(document).height()) {
+						i = 1;
+						$(".loadingbox").show();
+						setTimeout(pullDownAction, 3000);
+					}
+				});
+			});
+		 });
+		</script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="page-content">
+				<div class="header">
+					<!--
+                    	作者：shiguanggushi@126.com
+                    	时间：2016-03-04
+                    	描述：返回图标
+                    -->
+					<div class="left">
+						<a href="index.html">
+							<img src="img/fan_03.png" class="ib" />
+						</a>
+					</div>
+					<!--
+                    	作者：shiguanggushi@126.com
+                    	时间：2016-03-04
+                    	描述：标题
+                    -->
+                    <div class="tit">
+                    	<h2>
+                    		<span class="title">智库中国</span>
+                    	</h2>
+                    </div>
+                    <!--
+                    	作者：shiguanggushi@126.com
+                    	时间：2016-03-04
+                    	描述：搜索图标
+                    -->
+                    <div class="right">
+                    	<a href="#">
+                    		<div class="icon Hui-iconfont Hui-iconfont-search1"></div>
+                    	</a>
+                    </div>
+				</div>
+				
+				<!--
+                	作者：shiguanggushi@126.com
+                	时间：2016-03-07
+                	描述：nav
+                -->
+                <div class="navbox">
+                	<ul>
+                		<li class="active">反馈率</li>
+                		<li>最新</li>
+                		<li>热门</li>
+                		<li>筛选<i class="shaixuan Hui-iconfont Hui-iconfont-fenlei"></i></li>
+                	</ul>
+                </div>
+                <script>
+                	$(function(){
+					    $('.navbox ul li').click(function(){
+					        $(this).addClass('active');
+					        $('.navbox ul li').not(this).removeClass('active');
+					    });
+					});
+                </script>
+                <!--
+                	作者：shiguanggushi@126.com
+                	时间：2016-03-07
+                	描述：list
+                -->
+                <div class="list">
+                  <div class="section">
+                 	<div class="version">
+                 		<div class="versiont">
+                         <div class="verimg">
+                         	<img src="img/img-01_07.png" />
+                         </div>
+                         <div class="vercontent">
+                         	<div class="vertitle">
+                         		<p>
+                         			<span class="vername">朱克力</span>
+                         			<span class="vergs">某某有限公司</span>
+                         			<span class="verdd">上海</span>
+                         		</p>
+                         	</div>
+                         	<div class="verlist">
+                         		<ul>
+                         			<li>投资领域：<span>媒体通讯，教育</span></li>
+	                         		<li>投资阶段：<span>种子轮投资，pre-A轮投资，天使轮投资</span></li>
+	                         		<li>投资案例：<span>创数教育，口语100，优糖</span></li>
+                         		</ul>
+                         	</div>
+                         </div>
+                 		</div>
+                 		<div class="versionb">
+                 			<ol>
+                 				<li>收获项目：<span>30%</span></li>
+                 				<li>反馈率：<span>30%</span></li>
+                 				<li>约谈率：<span>30%</span></li>
+                 			</ol>
+                 		</div>
+                 	</div>
+                  </div>
+
+                  <div class="section">
+                 	<div class="version">
+                 		<div class="versiont">
+                         <div class="verimg">
+                         	<img src="img/img-01_07.png" />
+                         </div>
+                         <div class="vercontent">
+                         	<div class="vertitle">
+                         		<p>
+                         			<span class="vername">朱克力</span>
+                         			<span class="vergs">某某有限公司</span>
+                         			<span class="verdd">上海</span>
+                         		</p>
+                         	</div>
+                         	<div class="verlist">
+                         		<ul>
+                         			<li>投资领域：<span>媒体通讯，教育</span></li>
+	                         		<li>投资阶段：<span>种子轮投资，pre-A轮投资，天使轮投资</span></li>
+	                         		<li>投资案例：<span>创数教育，口语100，优糖</span></li>
+                         		</ul>
+                         	</div>
+                         </div>
+                 		</div>
+                 		<div class="versionb">
+                 			<ol>
+                 				<li>收获项目：<span>30%</span></li>
+                 				<li>反馈率：<span>30%</span></li>
+                 				<li>约谈率：<span>30%</span></li>
+                 			</ol>
+                 		</div>
+                 	</div>
+                  </div>
+                  
+                  <div class="section">
+                 	<div class="version">
+                 		<div class="versiont">
+                         <div class="verimg">
+                         	<img src="img/img-01_07.png" />
+                         </div>
+                         <div class="vercontent">
+                         	<div class="vertitle">
+                         		<p>
+                         			<span class="vername">朱克力</span>
+                         			<span class="vergs">某某有限公司</span>
+                         			<span class="verdd">上海</span>
+                         		</p>
+                         	</div>
+                         	<div class="verlist">
+                         		<ul>
+                         			<li>投资领域：<span>媒体通讯，教育</span></li>
+	                         		<li>投资阶段：<span>种子轮投资，pre-A轮投资，天使轮投资</span></li>
+	                         		<li>投资案例：<span>创数教育，口语100，优糖</span></li>
+                         		</ul>
+                         	</div>
+                         </div>
+                 		</div>
+                 		<div class="versionb">
+                 			<ol>
+                 				<li>收获项目：<span>30%</span></li>
+                 				<li>反馈率：<span>30%</span></li>
+                 				<li>约谈率：<span>30%</span></li>
+                 			</ol>
+                 		</div>
+                 	</div>
+                  </div>
+                  
+                  <div class="section">
+                 	<div class="version">
+                 		<div class="versiont">
+                         <div class="verimg">
+                         	<img src="img/img-01_07.png" />
+                         </div>
+                         <div class="vercontent">
+                         	<div class="vertitle">
+                         		<p>
+                         			<span class="vername">朱克力</span>
+                         			<span class="vergs">某某有限公司</span>
+                         			<span class="verdd">上海</span>
+                         		</p>
+                         	</div>
+                         	<div class="verlist">
+                         		<ul>
+                         			<li>投资领域：<span>媒体通讯，教育</span></li>
+	                         		<li>投资阶段：<span>种子轮投资，pre-A轮投资，天使轮投资</span></li>
+	                         		<li>投资案例：<span>创数教育，口语100，优糖</span></li>
+                         		</ul>
+                         	</div>
+                         </div>
+                 		</div>
+                 		<div class="versionb">
+                 			<ol>
+                 				<li>收获项目：<span>30%</span></li>
+                 				<li>反馈率：<span>30%</span></li>
+                 				<li>约谈率：<span>30%</span></li>
+                 			</ol>
+                 		</div>
+                 	</div>
+                  </div>
+                  
+                  <div class="section">
+                 	<div class="version">
+                 		<div class="versiont">
+                         <div class="verimg">
+                         	<img src="img/img-01_07.png" />
+                         </div>
+                         <div class="vercontent">
+                         	<div class="vertitle">
+                         		<p>
+                         			<span class="vername">朱克力</span>
+                         			<span class="vergs">某某有限公司</span>
+                         			<span class="verdd">上海</span>
+                         		</p>
+                         	</div>
+                         	<div class="verlist">
+                         		<ul>
+                         			<li>投资领域：<span>媒体通讯，教育</span></li>
+	                         		<li>投资阶段：<span>种子轮投资，pre-A轮投资，天使轮投资</span></li>
+	                         		<li>投资案例：<span>创数教育，口语100，优糖</span></li>
+                         		</ul>
+                         	</div>
+                         </div>
+                 		</div>
+                 		<div class="versionb">
+                 			<ol>
+                 				<li>收获项目：<span>30%</span></li>
+                 				<li>反馈率：<span>30%</span></li>
+                 				<li>约谈率：<span>30%</span></li>
+                 			</ol>
+                 		</div>
+                 	</div>
+                  </div>
+                  
+                  <div class="section">
+                 	<div class="version">
+                 		<div class="versiont">
+                         <div class="verimg">
+                         	<img src="img/img-01_07.png" />
+                         </div>
+                         <div class="vercontent">
+                         	<div class="vertitle">
+                         		<p>
+                         			<span class="vername">朱克力</span>
+                         			<span class="vergs">某某有限公司</span>
+                         			<span class="verdd">上海</span>
+                         		</p>
+                         	</div>
+                         	<div class="verlist">
+                         		<ul>
+                         			<li>投资领域：<span>媒体通讯，教育</span></li>
+	                         		<li>投资阶段：<span>种子轮投资，pre-A轮投资，天使轮投资</span></li>
+	                         		<li>投资案例：<span>创数教育，口语100，优糖</span></li>
+                         		</ul>
+                         	</div>
+                         </div>
+                 		</div>
+                 		<div class="versionb">
+                 			<ol>
+                 				<li>收获项目：<span>30%</span></li>
+                 				<li>反馈率：<span>30%</span></li>
+                 				<li>约谈率：<span>30%</span></li>
+                 			</ol>
+                 		</div>
+                 	</div>
+                  </div>
+                   <!--
+                   	作者：shiguanggushi@126.com
+                   	时间：2016-03-08
+                   	描述：加载动画
+                   -->
+				  <div class="loadingbox">
+					 <div class="loading"></div>
+			      </div>
+                </div>
+             
+                <!--
+                	作者：shiguanggushi@126.com
+                	时间：2016-03-04
+                	描述：底部
+                -->
+               <div class="footer">
+                	<ul>
+                		<li>
+                			<a href="#">
+                              <div class="nav">
+                              	<div class="ih ispr"></div>
+                              	<p>首页</p>
+                              </div>
+                		    </a>
+                		</li>
+                		<li>
+                            <a href="#">
+                              <div class="nav">
+                              	<div class="ic ispr"></div>
+                              	<p>关于我们</p>
+                              </div>
+                		    </a>
+                		</li>
+                		<li>
+                            <a href="#">
+                              <div class="nav">
+                              	<div class="is ispr"></div>
+                              	<p>服务流程</p>
+                              </div>
+                		    </a>
+                		</li>
+                		<li>
+                			<a href="#">
+                              <div class="nav">
+                              	<div class="if ispr"></div>
+                              	<p>欢迎加盟</p>
+                              </div>
+                		    </a>
+                		</li>
+                	</ul>
+                </div>
+			</div>
+		</div>
+	</body>
+</html>
